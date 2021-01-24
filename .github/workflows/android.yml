@@ -51,6 +51,12 @@ jobs:
         with:
           name: unit-tests-results
           path: app/build/reports/tests/testDebugUnitTest/index.html
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.7
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          files: app/build/test-results/testDebugUnitTest/*.xml
 
   lint:
     name: Lint Check
